@@ -20,20 +20,21 @@
 
 ## itemsテーブル
 
-| Column             | Type       | Options                  |
-| ------------------ | ---------- | ------------------------ |
-| product_name       | string     | nill:false               |
-| explanation        | text       | nill:false               |
-| category_id        | integer    | nill:false               |
-| state_id           | integer    | nill:false               |
-| delivery_fee_id    | integer    | nill:false               |
-| shipment_source_id | integer    | nill:false               |
-| required_day_id    | integer    | nill:false               |
-| price              | integer    | nill:false               |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| product_name       | string     | nill:false                     |
+| explanation        | text       | nill:false                     |
+| category_id        | integer    | nill:false                     |
+| state_id           | integer    | nill:false                     |
+| delivery_fee_id    | integer    | nill:false                     |
+| prefecture_id      | integer    | nill:false                     |
+| required_day_id    | integer    | nill:false                     |
+| price              | integer    | nill:false                     |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one    :purchase_records
+- has_one    :purchase_record
 
 
 ## purchase_recordsテーブル
