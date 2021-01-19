@@ -1,6 +1,6 @@
 # README
 
-## userテーブル
+## usersテーブル
 
 | Column             | Type       | Options                  |
 | ------------------ | ---------- | ------------------------ |
@@ -24,19 +24,19 @@
 | ------------------ | ---------- | ------------------------ |
 | product_name       | string     | nill:false               |
 | explanation        | text       | nill:false               |
-| category_id        | integer    | ActiveHashで実装          |
-| state_id           | integer    | ActiveHashで実装          |
-| delivery_fee_id    | integer    | ActiveHashで実装          |
-| shipment_source_id | integer    | ActiveHashで実装          |
-| Required_days_id   | integer    | ActiveHashで実装          |
+| category_id        | integer    | nill:false               |
+| state_id           | integer    | nill:false               |
+| delivery_fee_id    | integer    | nill:false               |
+| shipment_source_id | integer    | nill:false               |
+| required_day_id    | integer    | nill:false               |
 | price              | integer    | nill:false               |
 
 ### Association
 - belongs_to :user
-- has_one    :Purchase_records
+- has_one    :Purchase_record
 
 
-## Purchase_recordテーブル
+## Purchase_recordsテーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -49,15 +49,16 @@
 - has_one    :street
 
 
-## streetテーブル
+## streetsテーブル
 
-| Column         | Type       | Options         |
-| -------------- | ---------- | --------------- |
-| postal         | integer    | null: false     |
-| prefectures_id | integer    | ActiveHashで実装 |
-| minicipalities | string     | null: false     |
-| residence      | string     | null: false     |
-| phone          | integer    | null: false     |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| postal          | string     | null: false                    |
+| prefecture_id   | integer    | nill: false                    |
+| minicipalities  | string     | null: false                    |
+| residence       | string     | null: false                    |
+| phone           | string     | null: false                    |
+| Purchase_record | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :Purchase_record
