@@ -29,27 +29,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
       it 'category_idが空では出品できない' do
-        @item.category_id = ''
+        @item.category_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include('Category Select')
       end
       it 'state_idが空では出品できない' do
-        @item.state_id = ''
+        @item.state_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include('State Select')
       end
       it 'delivery_fee_idが空では出品できない' do
-        @item.delivery_fee_id = ''
+        @item.delivery_fee_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery fee Select')
       end
       it 'prefecture_idが空では出品できない' do
-        @item.prefecture_id = ''
+        @item.prefecture_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include('Prefecture Select')
       end
       it 'required_day_idが空では出品できない' do
-        @item.required_day_id = ''
+        @item.required_day_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include('Required day Select')
       end
@@ -58,8 +58,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it 'priceは、半角数字以外では出品できない' do
-        @item.price = '一あア０Aa'
+      it 'priceは、全角文字では出品できない' do
+        @item.price = '一あア０Aａ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it 'priceは、半角英数混合では出品できない' do
+        @item.price = '0Aa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it 'priceは、半角英語では出品できない' do
+        @item.price = 'Aa'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
