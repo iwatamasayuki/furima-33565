@@ -22,4 +22,5 @@ class User < ApplicationRecord
     validates :last_name_kana
   end
   has_many :items
+  has_many :purchase_records
 end
