@@ -37,7 +37,7 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def transition_to_index
-    if current_user.id == @item.user.id || user_signed_in? == @item.purchase_record.present?
+    if current_user.id == @item.user.id || @item.purchase_record.present?
       redirect_to root_path
     end
   end

@@ -2,14 +2,15 @@ require 'rails_helper'
 
 RSpec.describe PurchaseForm, type: :model do
   before do
-    @user = FactoryBot.build(:user)
-    @item = FactoryBot.build(:item)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
     @purchase_form = FactoryBot.build(:purchase_form, item_id: @item.id, user_id: @user.id)
+    sleep 0.2
   end
 
   describe '商品購入' do
     context '商品購入できるとき' do
-      it 'tokenからphoneまでの６項目が全て存在すれば購入できる' do
+      it 'tokenからphoneまでの必要な６項目が全て存在すれば購入できる' do
         expect(@purchase_form).to be_valid
       end
     end
@@ -69,6 +70,16 @@ RSpec.describe PurchaseForm, type: :model do
         @purchase_form.phone = "0" *12
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Phone is too long (maximum is 11 characters)")
+      end
+      it "user_idが空では購入できない" do
+        @purchase_form.user_id = nil
+        @purchase_form.valid?
+        expect(@purchase_form.errors.full_messages).to include("User can't be blank")
+      end
+      it "item_idが空では購入できない" do
+        @purchase_form.item_id = nil
+        @purchase_form.valid?
+        expect(@purchase_form.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

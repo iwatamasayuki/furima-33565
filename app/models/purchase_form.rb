@@ -8,6 +8,8 @@ class PurchaseForm
     validates :residence
     validates :phone, length: { maximum: 11 }, format: { with: /\A[0-9]+\z/ }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   validates :prefecture_id, numericality: { other_than: 0, message: 'Select' }
