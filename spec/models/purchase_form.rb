@@ -20,37 +20,37 @@ RSpec.describe PurchaseForm, type: :model do
     end
 
     context '商品購入できないとき' do
-      it "tokenが空では購入できない" do
+      it 'tokenが空では購入できない' do
         @purchase_form.token = nil
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Token can't be blank")
       end
-      it "postalが空では購入できない" do
+      it 'postalが空では購入できない' do
         @purchase_form.postal = nil
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Postal can't be blank")
       end
-      it "postalが-を含んでいないと購入できない" do
-        @purchase_form.postal = "5031264"
+      it 'postalが-を含んでいないと購入できない' do
+        @purchase_form.postal = '5031264'
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Postal is invalid. Include hyphen(-)")
+        expect(@purchase_form.errors.full_messages).to include('Postal is invalid. Include hyphen(-)')
       end
       it 'prefecture_idが空では購入できない' do
         @purchase_form.prefecture_id = 0
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include('Prefecture Select')
       end
-      it "minicipalitiesが空では購入できない" do
+      it 'minicipalitiesが空では購入できない' do
         @purchase_form.minicipalities = nil
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Minicipalities can't be blank")
       end
-      it "residenceが空では購入できない" do
+      it 'residenceが空では購入できない' do
         @purchase_form.residence = nil
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Residence can't be blank")
       end
-      it "phoneが空では購入できない" do
+      it 'phoneが空では購入できない' do
         @purchase_form.phone = nil
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Phone can't be blank")
@@ -70,17 +70,17 @@ RSpec.describe PurchaseForm, type: :model do
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include('Phone is invalid')
       end
-      it "phoneが１２文字では購入できない" do
-        @purchase_form.phone = "0" *12
+      it 'phoneが１２文字では購入できない' do
+        @purchase_form.phone = '0' * 12
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Phone is too long (maximum is 11 characters)")
+        expect(@purchase_form.errors.full_messages).to include('Phone is too long (maximum is 11 characters)')
       end
-      it "user_idが空では購入できない" do
+      it 'user_idが空では購入できない' do
         @purchase_form.user_id = nil
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("User can't be blank")
       end
-      it "item_idが空では購入できない" do
+      it 'item_idが空では購入できない' do
         @purchase_form.item_id = nil
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Item can't be blank")
