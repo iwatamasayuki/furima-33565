@@ -4,7 +4,7 @@ class CreateStreets < ActiveRecord::Migration[6.0]
       t.string     :postal,          null: false
       t.integer    :prefecture_id,   null: false
       t.string     :minicipalities,  null: false
-      t.string     :building,        null: false
+      t.string     :building
       t.string     :residence,       null: false
       t.string     :phone,           null: false
       t.references :purchase_record, foreign_key: true

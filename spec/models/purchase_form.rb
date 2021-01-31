@@ -13,6 +13,10 @@ RSpec.describe PurchaseForm, type: :model do
       it 'tokenからphoneまでの必要な６項目が全て存在すれば購入できる' do
         expect(@purchase_form).to be_valid
       end
+      it 'buildingは空でも購入できる' do
+        @purchase_form.building = nil
+        expect(@purchase_form).to be_valid
+      end
     end
 
     context '商品購入できないとき' do
